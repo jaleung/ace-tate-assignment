@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styled from "styled-components";
+import Card from "./card";
+
+const StyledSection = styled.section`
+  margin-top: 60px;
+`;
 
 class ProductList extends Component {
   state = {
     data: []
   };
 
-  constructor(props) {
-    super(props);
+  getData() {
     axios.get(`https://api.aceandtate.com/api/frames`).then(response => {
       const products = response.data.reduce((totalProduct, raw) => {
         raw.variants.forEach(product => {
@@ -19,12 +24,23 @@ class ProductList extends Component {
         data: products
       });
 
-      console.log(this.state);
+      console.log(this.state.data);
     });
   }
 
+  constructor(props) {
+    super(props);
+    this.getData();
+  }
+
   render() {
-    return <p>List</p>;
+    return (
+      <StyledSection>
+        {this.state.data.map(card => (
+          <Card key={card.sku} {...card} />
+        ))}
+      </StyledSection>
+    );
   }
 }
 
