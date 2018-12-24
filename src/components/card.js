@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const ProductImg = styled.img`
   max-width: 100%;
@@ -22,6 +23,11 @@ const ProductWrapper = styled.div`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
 const Card = props => {
   const scaleString = "c_scale,w_400";
   let image_url = props.profile_image_url.replace(
@@ -30,11 +36,13 @@ const Card = props => {
   );
   return (
     <ProductWrapper>
-      <ProductImg src={image_url} alt={props.name} />
-      <ProductName>
-        <strong>{props.name} </strong>
-        <span>{props.color}</span>
-      </ProductName>
+      <StyledLink to={`/product/${props.sku}`}>
+        <ProductImg src={image_url} alt={props.name} />
+        <ProductName>
+          <strong>{props.name} </strong>
+          <span>{props.color}</span>
+        </ProductName>
+      </StyledLink>
     </ProductWrapper>
   );
 };

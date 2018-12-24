@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import ProductList from "./components/productList";
+import ProductDetail from "./components/productDetail";
 import StyledNavBar from "./components/navBar";
 import axios from "axios";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -19,7 +21,7 @@ class App extends Component {
         data: products
       });
 
-      console.log(this.state.data);
+      // console.log(this.state.data);
     });
   }
 
@@ -29,10 +31,17 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <StyledNavBar />
-        <ProductList data={this.state.data} />
-      </div>
+      <Router>
+        <div className="App">
+          <StyledNavBar />
+          <Route
+            exact
+            path="/"
+            render={() => <ProductList data={this.state.data} />}
+          />
+          <Route path={`/product/:productSku`} component={ProductDetail} />
+        </div>
+      </Router>
     );
   }
 }
