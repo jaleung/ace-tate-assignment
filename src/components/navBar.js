@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../logo.svg";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const StyledNavBar = styled.header`
   position: fixed;
@@ -16,7 +17,9 @@ const StyledNavBar = styled.header`
 
 const NavBar = () => (
   <StyledNavBar>
-    <img src={logo} alt="logo" />
+    <Link to="/">
+      <img src={logo} alt="logo" />
+    </Link>
   </StyledNavBar>
 );
 

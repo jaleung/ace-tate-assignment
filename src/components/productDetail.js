@@ -1,5 +1,6 @@
 import React from "react";
+import StyledSection from "./global";
 
-const ProductDetail = props => <div>lorem</div>;
+const ProductDetail = props => <StyledSection>lorem</StyledSection>;
 
 export default ProductDetail;
