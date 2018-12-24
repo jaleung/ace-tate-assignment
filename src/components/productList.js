@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Card from "./card";
+import { Container, Row, Col } from "react-grid-system";
 
 const StyledSection = styled.section`
   margin-top: 60px;
@@ -36,9 +37,15 @@ class ProductList extends Component {
   render() {
     return (
       <StyledSection>
-        {this.state.data.map(card => (
-          <Card key={card.sku} {...card} />
-        ))}
+        <Container>
+          <Row>
+            {this.state.data.map(card => (
+              <Col key={card.sku} sm={4}>
+                <Card {...card} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
       </StyledSection>
     );
   }

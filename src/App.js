@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 import ProductList from "./components/productList";
 import StyledNavBar from "./components/navBar";
 

@@ -11,6 +11,7 @@ const StyledNavBar = styled.header`
   text-align: center;
   padding: 8px;
   background: white;
+  z-index: 1;
 `;
 
 const NavBar = () => (
