@@ -41,8 +41,6 @@ export default class ProductDetail extends React.Component {
         this.state.slideImages.push(this.state.item[url]);
       }
     });
-
-    console.log(this.state.item);
   }
 
   render() {
@@ -98,7 +96,7 @@ export default class ProductDetail extends React.Component {
                 </tbody>
               </table>
 
-              <h3>£ {this.state.item.price}</h3>
+              <h3>£{this.state.item.price}</h3>
             </Col>
           </Row>
         </Container>
