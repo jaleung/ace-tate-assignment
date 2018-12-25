@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Typography from "typography";
 import altonTheme from "typography-theme-alton";
+import Helmet from "react-helmet";
 
 altonTheme.headerFontFamily = ["europa", "san-serif"];
 altonTheme.bodyFontFamily = ["europa", "san-serif"];
@@ -52,6 +53,14 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <Helmet>
+            <title>Ace & Tate by Kenny Leung</title>
+            <link
+              rel="icon"
+              href="https://www.aceandtate.com/favicons/mstile-150x150.png"
+              type="image/png"
+            />
+          </Helmet>
           <GlobalStyle />
           <StyledNavBar />
           <Route
