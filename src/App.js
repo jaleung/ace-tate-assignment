@@ -4,11 +4,30 @@ import ProductDetail from "./components/productDetail";
 import StyledNavBar from "./components/navBar";
 import axios from "axios";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+import Typography from "typography";
+import altonTheme from "typography-theme-alton";
+
+altonTheme.headerFontFamily = ["europa", "san-serif"];
+altonTheme.bodyFontFamily = ["europa", "san-serif"];
+const GlobalStyle = createGlobalStyle`
+  @import url("https://use.typekit.net/yli5hth.css");
+
+  body {
+    font-family: europa, sans-serif;
+
+    img {
+      margin: 0;
+    }
+  }
+
+`;
 
 class App extends Component {
   state = {
     data: []
   };
+
   getData() {
     axios.get(`https://api.aceandtate.com/api/frames`).then(response => {
       const products = response.data.reduce((totalProduct, raw) => {
@@ -20,19 +39,20 @@ class App extends Component {
       this.setState({
         data: products
       });
-
-      // console.log(this.state.data);
     });
   }
 
   constructor(props) {
     super(props);
     this.getData();
+    this.typography = new Typography(altonTheme);
+    this.typography.injectStyles();
   }
   render() {
     return (
       <Router>
         <div className="App">
+          <GlobalStyle />
           <StyledNavBar />
           <Route
             exact

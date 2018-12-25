@@ -26,6 +26,7 @@ const ProductWrapper = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
+  display: block;
 `;
 
 const Card = props => {
@@ -36,7 +37,9 @@ const Card = props => {
   );
   return (
     <ProductWrapper>
-      <StyledLink to={`/product/${props.sku}`}>
+      <StyledLink
+        to={{ pathname: `/product/${props.sku}`, state: { props: props } }}
+      >
         <ProductImg src={image_url} alt={props.name} />
         <ProductName>
           <strong>{props.name} </strong>
