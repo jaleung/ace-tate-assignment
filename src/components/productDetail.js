@@ -14,13 +14,8 @@ const Slide = styled.div`
   overflow: hidden;
 `;
 
-const Thumbnail = styled.div`
-  flex: 1;
-  min-height: 108px;
-  background-image: url(${props => props.image});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+const Capitalise = styled.span`
+  text-transform: capitalize;
 `;
 
 export default class ProductDetail extends React.Component {
@@ -29,9 +24,7 @@ export default class ProductDetail extends React.Component {
 
     this.state = {
       item: props.location.state.props,
-      slideImages: [],
-      gallerySwiper: null,
-      thumbnailSwiper: null
+      slideImages: []
     };
 
     const urls = [
@@ -49,61 +42,63 @@ export default class ProductDetail extends React.Component {
       }
     });
 
-    this.galleryRef = this.galleryRef.bind(this);
-    this.thumbRef = this.thumbRef.bind(this);
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.gallerySwiper && nextState.thumbnailSwiper) {
-      const { gallerySwiper, thumbnailSwiper } = nextState;
-
-      gallerySwiper.controller.control = thumbnailSwiper;
-      thumbnailSwiper.controller.control = gallerySwiper;
-    }
-  }
-
-  galleryRef(ref) {
-    if (ref) this.setState({ gallerySwiper: ref.swiper });
-    console.log("from gallery: ", this.state);
-  }
-
-  thumbRef(ref) {
-    if (ref) this.setState({ thumbnailSwiper: ref.swiper });
-    console.log("from thumb: ", this.state);
+    console.log(this.state.item);
   }
 
   render() {
     const galleryParams = {
-      direction: "horizontal"
+      effect: "fade",
+      navigation: {
+        nextEl: ".swiper-button-next.swiper-button-white",
+        prevEl: ".swiper-button-prev.swiper-button-white"
+      },
+      pagination: {
+        el: ".swiper-pagination.swiper-pagination-white",
+        type: "bullets"
+      },
+      autoplay: {
+        delay: 5000
+      },
+      fadeEffect: {
+        crossFade: true
+      }
     };
 
-    const thumbsParams = {
-      slidesPerView: "auto",
-      touchRatio: 1,
-      freeMode: true,
-      slideToClickedSlide: true,
-      clickable: true
-    };
     return (
       <StyledSection>
         <Container>
           <Row>
-            <Col sm={6}>
-              <Swiper {...galleryParams} ref={this.galleryRef}>
+            <Col sm={8}>
+              <Swiper {...galleryParams}>
                 {this.state.slideImages.map(image => (
                   <Slide key={image} image={image} />
                 ))}
               </Swiper>
-
-              <Swiper {...thumbsParams} ref={this.thumbRef}>
-                {this.state.slideImages.map(image => (
-                  <Thumbnail key={image} image={image} />
-                ))}
-              </Swiper>
             </Col>
-            <Col sm={6}>
+            <Col sm={4}>
               <h1>{this.state.item.name}</h1>
               <p>{this.state.item.description}</p>
+
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <strong>Colour</strong>
+                    </td>
+                    <td>{this.state.item.color}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Material</strong>
+                    </td>
+                    <td>
+                      <Capitalise>{this.state.item.material[0]}</Capitalise>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h3>£ {this.state.item.price}</h3>
             </Col>
           </Row>
         </Container>
