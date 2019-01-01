@@ -25,27 +25,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 class App extends Component {
-  state = {
-    data: []
-  };
-
-  getData() {
-    axios.get(`https://api.aceandtate.com/api/frames`).then(response => {
-      const products = response.data.reduce((totalProduct, raw) => {
-        raw.variants.forEach(product => {
-          totalProduct.push(product);
-        });
-        return totalProduct;
-      }, []);
-      this.setState({
-        data: products
-      });
-    });
-  }
-
   constructor(props) {
     super(props);
-    this.getData();
     this.typography = new Typography(altonTheme);
     this.typography.injectStyles();
   }
@@ -63,11 +44,7 @@ class App extends Component {
           </Helmet>
           <GlobalStyle />
           <StyledNavBar />
-          <Route
-            exact
-            path="/"
-            render={() => <ProductList data={this.state.data} />}
-          />
+          <Route exact path="/" render={() => <ProductList />} />
           <Route path={`/product/:productSku`} component={ProductDetail} />
         </div>
       </Router>
