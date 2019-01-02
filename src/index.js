@@ -3,11 +3,22 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import promise from "redux-promise-middleware";
+import { composeWithDevTools } from "redux-devtools-extension";
+// import axiosMiddleware from "redux-axios-middleware";
 import rootReducers from "./reducers";
 import { Provider } from "react-redux";
+// import axios from "axios";
 
-const store = createStore(rootReducers);
+const middleware = composeWithDevTools(applyMiddleware(promise(), thunk));
+// const client = axios.create({
+//   //all axios can be used, shown in axios documentation
+//   baseURL: "https://api.aceandtate.com/api",
+//   responseType: "json"
+// });
+const store = createStore(rootReducers, middleware);
 ReactDOM.render(
   <Provider store={store}>
     <App />

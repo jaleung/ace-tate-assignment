@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ProductList from "./components/productList";
 import ProductDetail from "./components/productDetail";
 import StyledNavBar from "./components/navBar";
-import axios from "axios";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Typography from "typography";
