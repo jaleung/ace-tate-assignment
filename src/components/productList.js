@@ -11,7 +11,6 @@ class ProductList extends Component {
     this.props.getData();
   }
   render() {
-    console.log("this.props", this.props);
     return (
       <StyledSection>
         <Container>
@@ -29,7 +28,6 @@ class ProductList extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("stateee", state);
   return {
     data: state.data
   };

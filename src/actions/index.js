@@ -16,3 +16,12 @@ export function getData() {
     });
   };
 }
+
+export function popItemToState(item) {
+  return dispatch => {
+    dispatch({
+      type: "POP_ITEM",
+      activeItem: item
+    });
+  };
+}

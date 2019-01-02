@@ -1,6 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { popItemToState } from "../actions";
+import { connect } from "react-redux";
 
 const ProductImg = styled.img`
   max-width: 100%;
@@ -29,25 +31,38 @@ const StyledLink = styled(Link)`
   display: block;
 `;
 
-const Card = props => {
-  const scaleString = "c_scale,w_400";
-  let image_url = props.profile_image_url.replace(
-    "/upload/v1",
-    "/upload/" + scaleString + "/v1"
-  );
-  return (
-    <ProductWrapper>
-      <StyledLink
-        to={{ pathname: `/product/${props.sku}`, state: { props: props } }}
-      >
-        <ProductImg src={image_url} alt={props.name} />
-        <ProductName>
-          <strong>{props.name} </strong>
-          <span>{props.color}</span>
-        </ProductName>
-      </StyledLink>
-    </ProductWrapper>
-  );
+class Card extends Component {
+  render() {
+    const scaleString = "c_scale,w_400";
+    let image_url = this.props.profile_image_url.replace(
+      "/upload/v1",
+      "/upload/" + scaleString + "/v1"
+    );
+
+    return (
+      <ProductWrapper>
+        <StyledLink
+          to={`/product/${this.props.sku}`}
+          onClick={() => this.props.popItemToState(this.props)}
+        >
+          <ProductImg src={image_url} alt={this.props.name} />
+          <ProductName>
+            <strong>{this.props.name} </strong>
+            <span>{this.props.color}</span>
+          </ProductName>
+        </StyledLink>
+      </ProductWrapper>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    state: state
+  };
 };
 
-export default Card;
+export default connect(
+  mapStateToProps,
+  { popItemToState }
+)(Card);

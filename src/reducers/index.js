@@ -10,6 +10,11 @@ const rootReducers = (state = defaultState, action) => {
         ...state,
         data: action.payload
       };
+    case "POP_ITEM":
+      return {
+        ...state,
+        activeItem: action.activeItem
+      };
     default:
       return state;
   }
