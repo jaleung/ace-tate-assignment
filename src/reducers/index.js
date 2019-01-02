@@ -1,5 +1,6 @@
 const defaultState = {
-  data: []
+  data: [],
+  activeItem: {}
 };
 
 const rootReducers = (state = defaultState, action) => {
