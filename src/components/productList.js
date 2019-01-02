@@ -3,9 +3,10 @@ import Card from "./card";
 import { Container, Row, Col } from "react-grid-system";
 import StyledSection from "./global";
 import { connect } from "react-redux";
+import { getData } from "../actions";
 
 const ProductList = props => {
-  const fetched = props.posts;
+  const fetched = props.getData();
   console.log(fetched);
   return (
     <StyledSection>
@@ -30,4 +31,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ProductList);
+export default connect(mapStateToProps, {getData})(ProductList);
