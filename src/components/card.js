@@ -43,7 +43,7 @@ class Card extends Component {
       <ProductWrapper>
         <StyledLink
           to={`/product/${this.props.sku}`}
-          onClick={() => this.props.popItemToState(this.props)}
+          onClick={() => this.props.popItemToState(this.props, true)}
         >
           <ProductImg src={image_url} alt={this.props.name} />
           <ProductName>
