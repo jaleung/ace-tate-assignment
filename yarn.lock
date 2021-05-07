@@ -8188,11 +8188,6 @@ recursive-readdir@2.2.2:
   dependencies:
     minimatch "3.0.4"
 
-redux-axios-middleware@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/redux-axios-middleware/-/redux-axios-middleware-4.0.0.tgz#81951c3d9adce6f83ef892fd1568571cebe4a336"
-  integrity sha1-gZUcPZrc5vg++JL9FWhXHOvkozY=
-
 redux-devtools-extension@^2.13.7:
   version "2.13.7"
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.7.tgz#14bd7a1a7c8bee7f397beb1116fd16fc9633b752"
@@ -9525,9 +9520,9 @@ typography@^0.16.18:
     typography-normalize "^0.16.18"
 
 ua-parser-js@^0.7.18:
-  version "0.7.19"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.19.tgz#94151be4c0a7fb1d001af7022fdaca4642659e4b"
-  integrity sha512-T3PVJ6uz8i0HzPxOF9SWzWAlfN/DavlpQqepn22xgve/5QecC+XMCAtmUNnY7C9StehaV6exjUCI801lOI7QlQ==
+  version "0.7.28"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
+  integrity sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==
 
 uglify-es@^3.3.4:
   version "3.3.9"
